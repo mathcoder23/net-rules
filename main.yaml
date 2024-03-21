@@ -57,7 +57,9 @@ proxy-groups:
     # disable-udp: true
     # filter: 'someregex'
     proxies: 
-{{#each proxies}} {/each}}
+{{#each proxies}}
+      - '{{this.name}}'
+{/each}}
 {{#each proxies}}
   - name: '{{this.name}}'
       type: select

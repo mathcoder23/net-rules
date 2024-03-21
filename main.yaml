@@ -18,17 +18,6 @@ dns:
     fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://1.0.0.1:853', 'tls://8.8.4.4:853']
     fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
 proxy-providers:
-  # provider1:
-  #   type: http
-  #   url: "https://tempak.netlify.app/.netlify/functions/convert?url=https://qkt83qnp2yuj.subconnect.org/api/v1/client/subscribe?token=500f0aebb4c61f6cca2ad7e045996002"
-  #   interval: 3600
-  #   path: ./provider1.yaml
-  #   # filter: 'a|b' # golang regex string
-  #   health-check:
-  #     enable: true
-  #     interval: 600
-  #     # lazy: true
-  #     url: http://www.gstatic.com/generate_204
 {{#each proxies}}
   provider{{@index}}:
     type: http

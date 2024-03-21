@@ -1,0 +1,82 @@
+# version: 1.9
+# Summary: {{{summary}}}
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: '0.0.0.0:9090'
+clash-for-android:
+    append-system-dns: false
+profile:
+    tracing: true
+dns:
+    enable: true
+    enhanced-mode: fake-ip
+    ipv6: false
+    default-nameserver: [223.5.5.5, 119.29.29.29]
+    fake-ip-range: 198.18.0.1/16
+    use-hosts: true
+    nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
+    fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://1.0.0.1:853', 'tls://8.8.4.4:853']
+    fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
+proxy-providers:
+{{#each proxies}}
+  provider{{@index}}:
+    type: http
+    url: "{{{this.url}}}"
+    interval: 3600
+    path: ./providers/provider{{@index}}.yaml
+    # filter: 'a|b' # golang regex string
+    health-check:
+      enable: true
+      interval: 600
+      # lazy: true
+      url: http://www.gstatic.com/generate_204
+{{/each}}
+  # provider2:
+  #   type: file
+  #   path: ./proxy1.yaml
+  #   health-check:
+  #     enable: true
+  #     interval: 36000
+  #     url: http://www.gstatic.com/generate_204
+
+proxy-groups:
+
+  - name: 'gateway'
+    type: select
+    # disable-udp: true
+    # filter: 'someregex'
+    proxies: 
+{{#each proxies}}
+      - '{{this.name}}'
+{{/each}}
+{{#each proxies}}
+  - name: '{{this.name}}'
+    type: select
+    # disable-udp: true
+    # filter: 'someregex'
+    use:
+        - provider{{@index}}  
+{{/each}}
+
+rule-providers:
+  rules-direct:
+    type: http
+    behavior: domain
+    #url: "https://cdn.jsdelivr.net/gh/mathcoder23/net-rules@main/rules-direct.yaml"
+    url: "https://raw.githubusercontent.com/mathcoder23/net-rules/main/rules-direct.yaml"
+    path: ./providers/rules-direct.yaml
+    interval: 86400
+  rules-proxy:
+    type: http
+    behavior: domain
+    #url: "https://cdn.jsdelivr.net/gh/mathcoder23/net-rules@main/rules-proxy.yaml"
+    url: "https://raw.githubusercontent.com/mathcoder23/net-rules/main/rules-proxy.yaml"
+    path: ./providers/rules-proxy.yaml
+    interval: 86400
+rules:
+    - 'RULE-SET,rules-direct,DIRECT'
+    - 'RULE-SET,rules-proxy,gateway'
+    - 'GEOIP,CN,DIRECT'
+    - 'MATCH,gateway'

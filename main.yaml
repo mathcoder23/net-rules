@@ -59,13 +59,23 @@ proxy-groups:
         - provider{{@index}}  
 {{/each}}
 
-# rule-providers:
-#   reject:
-#     type: http
-#     behavior: domain
-#     url: "https://cdn.jsdelivr.net/gh/mathcoder23/net-rules@main/rule/while"
-#     path: ./ruleset/reject.yaml
-#     interval: 86400
+rule-providers:
+  rules-direct:
+    type: http
+    behavior: domain
+    #url: "https://cdn.jsdelivr.net/gh/mathcoder23/net-rules@main/rules-direct.yaml"
+    url: "https://raw.githubusercontent.com/mathcoder23/net-rules/main/rules-direct.yaml"
+    path: ./rules-direct.yaml
+    interval: 86400
+  rules-proxy:
+    type: http
+    behavior: domain
+    #url: "https://cdn.jsdelivr.net/gh/mathcoder23/net-rules@main/rules-proxy.yaml"
+    url: "https://raw.githubusercontent.com/mathcoder23/net-rules/main/rules-proxy.yaml"
+    path: ./rules-proxy.yaml
+    interval: 86400
 rules:
+    - 'RULE-SET,rules-direct,DIRECT'
+    - 'RULE-SET,rules-direct,gateway'
     - 'GEOIP,CN,DIRECT'
     - 'MATCH,gateway'

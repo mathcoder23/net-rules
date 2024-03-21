@@ -52,10 +52,10 @@ proxy-groups:
 {{/each}}
 {{#each proxies}}
   - name: '{{this.name}}'
-      type: select
-      # disable-udp: true
-      # filter: 'someregex'
-      use:
+    type: select
+    # disable-udp: true
+    # filter: 'someregex'
+    use:
         - provider{{@index}}  
 {{/each}}
 

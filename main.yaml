@@ -21,7 +21,7 @@ proxy-providers:
 {{#each proxies}}
   provider{{@index}}:
     type: http
-    url: "{{this.url}}"
+    url: "{{{this.url}}}"
     interval: 3600
     path: ./provider{{@index}}.yaml
     # filter: 'a|b' # golang regex string

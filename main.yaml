@@ -1,0 +1,51 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: '0.0.0.0:9090'
+clash-for-android:
+    append-system-dns: false
+profile:
+    tracing: true
+dns:
+    enable: true
+    enhanced-mode: fake-ip
+    ipv6: false
+    default-nameserver: [223.5.5.5, 119.29.29.29]
+    fake-ip-range: 198.18.0.1/16
+    use-hosts: true
+    nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
+    fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://1.0.0.1:853', 'tls://8.8.4.4:853']
+    fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
+proxy-providers:
+  provider1:
+    type: http
+    url: "https://mo.mojieurl.com/api/v1/client/subscribe?token=125315b053700bbf2188949c3fea7d31"
+    interval: 3600
+    path: ./provider1.yaml
+    # filter: 'a|b' # golang regex string
+    health-check:
+      enable: true
+      interval: 600
+      # lazy: true
+      url: http://www.gstatic.com/generate_204
+  provider2:
+    type: file
+    path: ./proxy1.yaml
+    health-check:
+      enable: true
+      interval: 36000
+      url: http://www.gstatic.com/generate_204
+
+proxy-groups:
+  - name: Proxy2
+    type: select
+    # disable-udp: true
+    # filter: 'someregex'
+    use:
+      - provider2
+    # proxies:
+    #   - 'p1'
+rules:
+    - 'GEOIP,CN,DIRECT'
+    - 'MATCH,Proxy2'

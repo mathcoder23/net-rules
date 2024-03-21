@@ -1,0 +1,5 @@
+proxies:
+  - { name: 'p1', type: ss, server: u8ims.obk.icu, port: 23001, cipher: aes-128-gcm, password: e827574a-bbb-41a2-9ca3-28d6d00e47b9, udp: true }
+  - { name: 'p2', type: ss, server: u8ims.obk.icu, port: 23002, cipher: aes-128-gcm, password: e827574a-xx-41a2-9ca3-28d6d00e47b9, udp: true }
+  - { name: 'p3', type: ss, server: u8ims.obk.icu, port: 23003, cipher: aes-128-gcm, password: e827574a-xx-41a2-9ca3-28d6d00e47b9, udp: true }
+ 

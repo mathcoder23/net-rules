@@ -24,7 +24,7 @@ proxy-providers:
     type: http
     url: "{{{this.url}}}"
     interval: 3600
-    path: ./provider{{@index}}.yaml
+    path: ./providers/provider{{@index}}.yaml
     # filter: 'a|b' # golang regex string
     health-check:
       enable: true
@@ -65,14 +65,14 @@ rule-providers:
     behavior: domain
     #url: "https://cdn.jsdelivr.net/gh/mathcoder23/net-rules@main/rules-direct.yaml"
     url: "https://raw.githubusercontent.com/mathcoder23/net-rules/main/rules-direct.yaml"
-    path: ./rules-direct.yaml
+    path: ./providers/rules-direct.yaml
     interval: 86400
   rules-proxy:
     type: http
     behavior: domain
     #url: "https://cdn.jsdelivr.net/gh/mathcoder23/net-rules@main/rules-proxy.yaml"
     url: "https://raw.githubusercontent.com/mathcoder23/net-rules/main/rules-proxy.yaml"
-    path: ./rules-proxy.yaml
+    path: ./providers/rules-proxy.yaml
     interval: 86400
 rules:
     - 'RULE-SET,rules-direct,DIRECT'

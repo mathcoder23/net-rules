@@ -18,34 +18,54 @@ dns:
     fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://1.0.0.1:853', 'tls://8.8.4.4:853']
     fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
 proxy-providers:
-  provider1:
+  # provider1:
+  #   type: http
+  #   url: "https://tempak.netlify.app/.netlify/functions/convert?url=https://qkt83qnp2yuj.subconnect.org/api/v1/client/subscribe?token=500f0aebb4c61f6cca2ad7e045996002"
+  #   interval: 3600
+  #   path: ./provider1.yaml
+  #   # filter: 'a|b' # golang regex string
+  #   health-check:
+  #     enable: true
+  #     interval: 600
+  #     # lazy: true
+  #     url: http://www.gstatic.com/generate_204
+{{#each proxies}}
+  provider{{@index}}:
     type: http
-    url: "https://mo.mojieurl.com/api/v1/client/subscribe?token=125315b053700bbf2188949c3fea7d31"
+    url: "{{this.url}}"
     interval: 3600
-    path: ./provider1.yaml
+    path: ./provider{{@index}}.yaml
     # filter: 'a|b' # golang regex string
     health-check:
       enable: true
       interval: 600
       # lazy: true
       url: http://www.gstatic.com/generate_204
-  provider2:
-    type: file
-    path: ./proxy1.yaml
-    health-check:
-      enable: true
-      interval: 36000
-      url: http://www.gstatic.com/generate_204
+{/each}}
+  # provider2:
+  #   type: file
+  #   path: ./proxy1.yaml
+  #   health-check:
+  #     enable: true
+  #     interval: 36000
+  #     url: http://www.gstatic.com/generate_204
 
 proxy-groups:
-  - name: Proxy2
+
+  - name: 'gateway'
     type: select
     # disable-udp: true
     # filter: 'someregex'
-    use:
-      - provider2
-    # proxies:
-    #   - 'p1'
+    proxies: 
+{{#each proxies}} {/each}}
+{{#each proxies}}
+  - name: '{{this.name}}'
+      type: select
+      # disable-udp: true
+      # filter: 'someregex'
+      use:
+        - provider{{@index}}  
+{/each}}
 rules:
     - 'GEOIP,CN,DIRECT'
-    - 'MATCH,Proxy2'
+    - 'MATCH,gateway'

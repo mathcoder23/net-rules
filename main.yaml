@@ -76,6 +76,6 @@ rule-providers:
     interval: 86400
 rules:
     - 'RULE-SET,rules-direct,DIRECT'
-    - 'RULE-SET,rules-direct,gateway'
+    - 'RULE-SET,rules-proxy,gateway'
     - 'GEOIP,CN,DIRECT'
     - 'MATCH,gateway'

@@ -18,6 +18,7 @@ dns:
     nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
     fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://1.0.0.1:853', 'tls://8.8.4.4:853']
     fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
+## https://tempak.netlify.app/.netlify/functions/convert?url=https://lissud.sixbar.biz/api/v1/client/subscribe?token=6fc951e05e24810e882885168b0c2e6c
 proxies:
     - { name: '🇭🇰 香港 01', type: ss, server: lienbagh.yangliq.com, port: 21101, cipher: aes-128-gcm, password: 599ba1e9-c45e-438f-aafa-4fd104a16de9, udp: true }
     - { name: '🇭🇰 香港 02', type: ss, server: lienbagh.yangliq.com, port: 21102, cipher: aes-128-gcm, password: 599ba1e9-c45e-438f-aafa-4fd104a16de9, udp: true }
@@ -72,7 +73,7 @@ proxy-groups:
     type: select
     # disable-udp: true
     # filter: 'someregex'
-    proxies: ['🇸🇬 新加坡 01','🇸🇬 新加坡 02','🇸🇬 新加坡 03']
+    proxies: ['🇸🇬 新加坡 01','🇸🇬 新加坡 02','🇸🇬 新加坡 03','🇨🇦 加拿大','🇯🇵 日本 01','🇯🇵 日本 02','🇯🇵 日本 03','🇭🇰 香港 01','🇭🇰 香港 02',''🇭🇰 香港 03]
 
 rule-providers:
   rules-direct:

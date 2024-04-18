@@ -2,3 +2,4 @@ payload:
   - '+.goa.com'
   - '+.banyan.compass.com'
   - '+.bygcloud.com'
+  - '+.svc.cluster.local'

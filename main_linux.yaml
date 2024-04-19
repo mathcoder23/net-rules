@@ -7,8 +7,9 @@ clash-for-android:
     append-system-dns: false
 profile:
     tracing: true
+# 关闭dns和tun,由于不兼容k8s, 当要是使用时再开启
 dns:
-  enable: true
+  enable: false
   listen: 0.0.0.0:53
   enhanced-mode: fake-ip
   nameserver:
@@ -16,7 +17,7 @@ dns:
   fallback:
     - 8.8.8.8
 tun:
-  enable: true
+  enable: false
   stack: system # or gvisor
   # dns-hijack:
   #   - 8.8.8.8:53

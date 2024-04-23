@@ -3,3 +3,4 @@ payload:
   - '+.banyan.compass.com'
   - '+.bygcloud.com'
   - '+.svc.cluster.local'
+  - '+.deepl.com'

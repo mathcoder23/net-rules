@@ -69,7 +69,6 @@ rule-providers:
     path: ./providers/rules-proxy.yaml
     interval: 86400
 rules:
-    - 'RULE-SET,rules-direct,DIRECT'
     - 'RULE-SET,rules-proxy-white,gateway'
     - 'GEOIP,CN,DIRECT'
     - 'MATCH,DIRECT'

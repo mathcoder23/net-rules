@@ -5,3 +5,4 @@ payload:
   - '+.svc.cluster.local'
   - '+.deepl.com'
   - '+.okjc.one'
+  - '+.na.compass.com' # banyan

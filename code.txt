@@ -123,3 +123,83 @@ public class AlicePuzzle {
     System.out.println(a.steps("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "ZYXWVUTSRQPONMLKJIHGFEDCBA")); // Returns: 25
   }
 }
+
+
+
+B1:
+
+package com.test;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class BestScheduler {
+    public int minTime(int[] time, String[] prec) {
+        int n = time.length;
+        
+        // Adjacency list for graph
+        List<List<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            adj.add(new ArrayList<>());
+        }
+        
+        // In-degree array to track the number of dependencies
+        int[] inDegree = new int[n];
+        
+        // Build the graph from the prec array
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (prec[i].charAt(j) == 'Y') {
+                    adj.get(i).add(j);
+                    inDegree[j]++;
+                }
+            }
+        }
+        
+        // Topological Sort using Kahn's Algorithm
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            if (inDegree[i] == 0) {
+                queue.offer(i);
+            }
+        }
+        
+        int[] completionTime = new int[n];
+        int processed = 0;
+        
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+            processed++;
+            completionTime[curr] += time[curr];
+            
+            for (int next : adj.get(curr)) {
+                inDegree[next]--;
+                completionTime[next] = Math.max(completionTime[next], completionTime[curr]);
+                if (inDegree[next] == 0) {
+                    queue.offer(next);
+                }
+            }
+        }
+        
+        // If all nodes were not processed, there was a cycle
+        if (processed != n) {
+            return -1;
+        }
+        
+        // The minimum time required is the maximum value in completionTime array
+        int minTimeRequired = 0;
+        for (int i = 0; i < n; i++) {
+            minTimeRequired = Math.max(minTimeRequired, completionTime[i]);
+        }
+        
+        return minTimeRequired;
+    }
+
+    public static void main(String[] args) {
+        BestScheduler scheduler = new BestScheduler();
+        System.out.println(scheduler.minTime(new int[]{150, 200, 250}, new String[]{"NNN", "NNN", "NNN"})); // 250
+        System.out.println(scheduler.minTime(new int[]{150, 200, 250}, new String[]{"NNN", "YNN", "NNN"})); // 350
+    }
+}

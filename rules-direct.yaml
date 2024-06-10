@@ -6,3 +6,4 @@ payload:
   - '+.deepl.com'
   - '+.okjc.one'
   - '+.na.compass.com' # banyan
+  - 'static.datadoghq.com'

@@ -7,5 +7,5 @@ payload:
   - '+.okjc.one'
   - '+.na.compass.com' # banyan
   # - '+.datadoghq.com'
-  # - 'pipelines.compass.com'
+  - 'pipelines.compass.com'
 

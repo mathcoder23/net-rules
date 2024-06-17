@@ -2,3 +2,5 @@ payload:
   - '+.google.com'
   - '+.github.com'
   - '+.githubusercontent.com'
+  - '+.datadoghq.com'
+  - 'pipelines.compass.com'

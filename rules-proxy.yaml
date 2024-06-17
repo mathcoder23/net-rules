@@ -3,4 +3,4 @@ payload:
   - '+.github.com'
   - '+.githubusercontent.com'
   - '+.datadoghq.com'
-  - 'pipelines.compass.com'
+  # - 'pipelines.compass.com'

@@ -8,4 +8,5 @@ payload:
   - '+.na.compass.com' # banyan
   # - '+.datadoghq.com'
   - 'pipelines.compass.com'
+  - 'listing-metrics.backend.gamma.na.compass.com'
 

@@ -78,5 +78,6 @@ rule-providers:
 rules:
     - 'RULE-SET,rules-direct,DIRECT'
     - 'RULE-SET,rules-proxy,gateway'
+    - 'GEOIP,LAN,DIRECT'
     - 'GEOIP,CN,DIRECT'
     - 'MATCH,gateway'

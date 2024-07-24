@@ -5,6 +5,7 @@ payload:
   - '+.svc.cluster.local'
   - '+.deepl.com'
   - '+.okjc.one'
+  - '+.zoho.com'
   - '+.na.compass.com' # banyan
   # - '+.datadoghq.com'
   - 'pipelines.compass.com'

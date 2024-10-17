@@ -4,3 +4,4 @@ payload:
   - '+.githubusercontent.com'
   - '+.datadoghq.com'
   # - 'pipelines.compass.com'
+  - '+.docker.io'

@@ -11,4 +11,5 @@ payload:
   # - '+.datadoghq.com'
   - 'pipelines.compass.com'
   - 'listing-metrics.backend.gamma.na.compass.com'
+  - 'smtp-mail.outlook.com'
 

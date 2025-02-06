@@ -3,7 +3,7 @@ payload:
   - '+.banyan.compass.com'
   - '+.bygcloud.com'
   - '+.svc.cluster.local'
-  - '+.deepl.com'
+  # - '+.deepl.com'
   - '+.okjc.one'
   - '+.zoho.com'
   - '+.zohocdn.com'

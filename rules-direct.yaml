@@ -7,6 +7,7 @@ payload:
   - '+.okjc.one'
   - '+.zoho.com'
   - '+.zohocdn.com'
+  - 'jss.compass.com' # self compass service
   - '+.na.compass.com' # banyan
   # - '+.datadoghq.com'
   - 'pipelines.compass.com'

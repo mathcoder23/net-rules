@@ -75,12 +75,8 @@ rule-providers:
     url: "https://goeasy123.top/.netlify/functions/url_proxxy?url=https://raw.githubusercontent.com/mathcoder23/net-rules/main/rules-proxy.yaml"
     path: ./providers/rules-proxy.yaml
     interval: 86400
-script:
-  shortcuts:
-    direct: src_ip == '192.168.3.109'
 rules:
-    - 'SCRIPT,shortcuts.direct,DIRECT'
-#    - 'SRC-IP-CIDR,192.168.3.109/32,DIRECT'
+    - 'SRC-IP-CIDR,192.168.3.1/24,DIRECT'
     - 'RULE-SET,rules-direct,DIRECT'
     - 'RULE-SET,rules-proxy,gateway'
     - 'GEOIP,LAN,DIRECT'

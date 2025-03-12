@@ -79,7 +79,7 @@ script:
   shortcuts:
     direct: src_ip == '192.168.3.109'
 rules:
-    - 'SCRIPT,direct,DIRECT'
+    - 'SCRIPT,shortcuts.direct,DIRECT'
 #    - 'SRC-IP-CIDR,192.168.3.109/32,DIRECT'
     - 'RULE-SET,rules-direct,DIRECT'
     - 'RULE-SET,rules-proxy,gateway'

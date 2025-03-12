@@ -1,7 +1,7 @@
 # version: 1.9
 # Summary: {{{summary}}}
 mixed-port: 7890
-allow-lan: true
+allow-lan: false
 mode: rule
 log-level: info
 external-controller: '0.0.0.0:9090'

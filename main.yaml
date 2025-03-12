@@ -76,6 +76,7 @@ rule-providers:
     path: ./providers/rules-proxy.yaml
     interval: 86400
 rules:
+    - 'SRC-IP-CIDR,192.168.3.109/32,DIRECT'
     - 'RULE-SET,rules-direct,DIRECT'
     - 'RULE-SET,rules-proxy,gateway'
     - 'GEOIP,LAN,DIRECT'

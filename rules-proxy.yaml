@@ -5,3 +5,4 @@ payload:
   - '+.datadoghq.com'
   # - 'pipelines.compass.com'
   - '+.docker.io'
+  - '+.gosimple.top'

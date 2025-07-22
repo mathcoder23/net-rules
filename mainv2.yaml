@@ -41,9 +41,9 @@ proxy-groups:
 {{/each}}
 
 {{/each}}
-{{#each allProxyies}}
 
 proxies:
+{{#each allProxyies}}
   - {{{this}}}
 {{/each}}
 

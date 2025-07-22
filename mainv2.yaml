@@ -37,7 +37,7 @@ proxy-groups:
     # filter: 'someregex'
     proxies:
 {{#each this.list}}
-      - '{{{this}}}'
+      - {{{this}}}
 {{/each}}
 
 {{/each}}
